@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCP基金会 - 异常事物数据库</title>
+    <style>
+        :root {
+            --main-bg: #001233;
+            --accent: #00f7ff;
+            --warning: #ff4650;
+            --text: #e6f1ff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Consolas', monospace;
+        }
+
+        body {
+            background: var(--main-bg);
+            color: var(--text);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* 动态网格背景 */
+        body::before {
+            content: '';
+            position: fixed;
+            width: 200vw;
+            height: 200vh;
+            background: 
+                linear-gradient(90deg, rgba(0,242,255,0.05) 1px, transparent 1px),
+                linear-gradient(180deg, rgba(0,242,255,0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+            transform: rotate(-5deg) translate(-50%, -50%);
+            z-index: -1;
+        }
+
+        .terminal-nav {
+            background: rgba(0, 18, 51, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            border-bottom: 1px solid var(--accent);
+            position: fixed;
+            width: 100%;
+            top: 0;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            text-decoration: none;
+            background: linear-gradient(45deg, var(--accent), #0066ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-items {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: var(--text);
+            text-decoration: none;
+            position: relative;
+            padding: 0.5rem;
+            transition: 0.3s;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            bottom: 0;
+            left: 0;
+            transition: 0.3s;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .header {
+            margin-top: 100px;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .cyber-border {
+            border: 2px solid var(--accent);
+            padding: 2rem;
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: 0 0 30px rgba(0,242,255,0.2);
+        }
+
+        .cyber-border::before {
+            content: '▶ ACCESS GRANTED';
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background: var(--main-bg);
+            color: var(--accent);
+            padding: 0 1rem;
+            font-size: 0.9rem;
+        }
+
+        .scp-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 2rem auto;
+        }
+
+        .scp-card {
+            background: rgba(0, 18, 51, 0.8);
+            border: 1px solid rgba(0,242,255,0.3);
+            padding: 1.5rem;
+            backdrop-filter: blur(5px);
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .scp-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,242,255,0.1);
+        }
+
+        .object-class {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: var(--warning);
+            color: white;
+            padding: 0.3rem 1rem;
+            clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
+        }
+
+        .warning-banner {
+            background: linear-gradient(90deg, var(--warning), #ff8265);
+            padding: 1rem;
+            text-align: center;
+            margin: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .warning-banner::after {
+            content: '⚠';
+            position: absolute;
+            right: -30px;
+            top: -40px;
+            font-size: 6rem;
+            opacity: 0.1;
+        }
+
+        @media (max-width: 768px) {
+            .nav-items {
+                display: none;
+            }
+            
+            .scp-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="terminal-nav">
+        <div class="nav-container">
+            <a href="#" class="logo">SCP FOUNDATION</a>
+            <div class="nav-items">
+                <a href="#" class="nav-link">数据库</a>
+                <a href="#" class="nav-link">设施</a>
+                <a href="#" class="nav-link">协议</a>
+                <a href="#" class="nav-link">人员</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="header">
+        <div class="cyber-border">
+            <h1>异常事物数据库</h1>
+            <p style="margin-top: 1rem;">安全等级：5级</p>
+            <div class="scanline"></div>
+        </div>
+    </header>
+
+    <div class="warning-banner">
+        警告：未经授权访问将导致立即终止
+    </div>
+
+    <div class="scp-grid">
+        <div class="scp-card">
+            <span class="object-class">KETER</span>
+            <h2>SCP-096 - "羞涩的人"</h2>
+            <p>对象表现出极端的攻击性反应当有人观察其面部特征时...</p>
+            <div class="code-block">收容协议：需永久保持电子监控</div>
+        </div>
+
+        <div class="scp-card">
+            <span class="object-class">EUCLID</span>
+            <h2>SCP-294 - 咖啡机</h2>
+            <p>能够提供任何液体物质的自动贩卖设备，包括理论上存在的物质...</p>
+            <div class="code-block">收容协议：需每日功能测试</div>
+        </div>
+
+        <div class="scp-card">
+            <span class="object-class">THAUMIEL</span>
+            <h2>SCP-3000</h2>
+            <p>位于孟加拉湾的巨大蛇形实体，其分泌物质可用于记忆删除剂生产...</p>
+            <div class="code-block">收容协议：水下设施维护</div>
+        </div>
+    </div>
+
+    <footer class="warning-banner" style="margin-top: 4rem;">
+        <p>当前连接已加密 - 基金会网络运营中心监控中</p>
+        <p>版本 2.13.6 - 最后更新: ██-██-20██</p>
+    </footer>
+</body>
+</html>
